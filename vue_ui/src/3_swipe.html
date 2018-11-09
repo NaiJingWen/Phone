@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/vue.js"></script>
+    <script src="js/index.js">mintui组件</script>
+    <style>
+        #app{
+            border:1px solid red;
+            height:160px;/*默认高度为0 需要手动设置高度*/
+        }
+        #app img{
+            width:100%;
+        }
+    </style>
+</head>
+<body>
+    <h3>图片轮播</h3>
+    <div id="app">
+        <mt-swipe :auto="2000">
+            <mt-swipe-item v-for="item in list">
+                <!--for循环加入图片 
+                    在包含img标签的标签内写上v-for="item in list"   
+                    在img标记中写上v-lazy="item"(懒加载方法)或:src="item"  
+                    在下方的data中添加一个列表加入图片路径list:["x.png,y.png..."]-->
+                <!-- <img v-lazy="item"> -->
+                <img :src="item">
+            </mt-swipe-item>
+        </mt-swipe>
+    </div>
+    <script>
+        new Vue({
+            el:"#app",
+            data:function(){return {
+                list:["img/banner1.png",
+                      "img/banner2.png",
+                      "img/banner3.png",
+                      "img/banner4.png"]
+            }}
+        })
+    </script>
+</body>
+</html>

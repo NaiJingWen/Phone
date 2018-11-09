@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/vue.js"></script>
+    <script src="js/index.js">mintui组件</script>
+    <style>
+        .mytoast{
+            color: #e4393c;/*文字颜色*/
+            background: #fff;
+            font-size: 14px;
+            border:1px solid #aaa;
+        }
+        .mytip{
+            width:30px;/*自定义图标*/
+            height: 30px;
+            background: url("img/mm.png") no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        //复习  js   高级(原型、原型链、闭包)、vue、生命周期   背
+        //项目  pc   1项目
+        //项目  vue  2项目
+        new Vue({
+            el:"#app",
+            data:function(){return { }},
+            methods:{
+                show:function(){
+                    //测试单页环境使用方式
+                    //this.$toast("下载成功")
+                    var mytoast=this.$toast({
+                        message:"数据正在加载中...",//提示框中消息
+                        position:"top",      //位置 顶端
+                        duration:-1,         //持续时间 -1
+                        className:"mytoast", //自定义样式   25
+                        iconClass:"mytip"    //自定义图标
+                    });
+                    //模拟数据下载操作，当数据下载完成关闭提示框
+                    setTimeout(()=>{
+                        mytoast.close();//关闭提示框
+                    },2000)
+                }
+            },
+            created:function(){
+                //钩子函数;当vue对象创建成功后调用
+                this.show();
+            }
+        })
+    </script>
+</body>
+</html>
